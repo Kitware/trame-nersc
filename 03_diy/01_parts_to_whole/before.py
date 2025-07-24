@@ -9,10 +9,12 @@ state = server.state
 state.a = 1
 state["b"] = state.a * 2
 
+
 # Reactivity
 @state.change("a")
 def update_b(a, **_):
     state.b = int(a) * 2
+
 
 @state.change("a", "b")
 def update_log(**_):
@@ -22,14 +24,17 @@ def update_log(**_):
 
     state.log += " ".join(msg)
 
+
 @state.change("log")
 def trim_log(log, **_):
     lines = log.split("\n")
     if len(lines) > 10:
         state.log = "\n".join(lines[-10:])
 
+
 def reset_a():
     state.a = 10
+
 
 with DivLayout(server) as ui:
     html.H1("Events and State")

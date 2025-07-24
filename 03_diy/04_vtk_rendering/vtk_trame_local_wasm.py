@@ -120,7 +120,9 @@ class VtkApp(TrameApp):
                 )
             with self.ui.content:
                 with v3.VContainer(fluid=True, classes="ma-0 pa-0 h-100"):
-                    with vtklocal.LocalView(self.render_window, throttle_rate=20) as view:
+                    with vtklocal.LocalView(
+                        self.render_window, throttle_rate=20
+                    ) as view:
                         self.ctrl.view_update = view.update_throttle
                         self.ctrl.view_reset_camera = view.reset_camera
 

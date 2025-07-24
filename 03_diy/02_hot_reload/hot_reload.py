@@ -4,6 +4,7 @@ from trame.decorators import change, controller, hot_reload
 from trame.widgets import html
 from trame.ui.html import DivLayout
 
+
 class App(TrameApp):
     def __init__(self, server=None):
         super().__init__(server)
@@ -44,9 +45,8 @@ class App(TrameApp):
             )
 
             html.Br()
-            
-            html.Button("Refresh UI", click=self.ctrl.update_ui)
 
+            html.Button("Refresh UI", click=self.ctrl.update_ui)
 
     # Reactivity methods
     @change("a")
@@ -68,12 +68,14 @@ class App(TrameApp):
         if len(lines) > max_lines:
             self.state.log = "\n".join(lines[-max_lines:])
 
+
 # -----------------------------------------------------------------------------
 # In case you want to run it from the CLI
 # -----------------------------------------------------------------------------
 def main():
     app = App()
     app.server.start()
+
 
 if __name__ == "__main__":
     main()

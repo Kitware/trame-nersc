@@ -3,6 +3,7 @@ from trame.app import TrameApp
 from trame.ui.vuetify3 import VAppLayout
 from trame.widgets import html, vuetify3 as v3
 
+
 class Cards(TrameApp):
     def __init__(self, server=None):
         super().__init__(server)
@@ -27,7 +28,6 @@ class Cards(TrameApp):
 
         self._build_ui()
 
-
     def _build_ui(self):
         with VAppLayout(self.server) as self.ui:
             with v3.VContainer():
@@ -39,7 +39,9 @@ class Cards(TrameApp):
                                     "{{ card.title }}",
                                     classes="ps-4 text-caption text-medium-emphasis",
                                 )
-                                with v3.VCardTitle(classes="pt-0 mt-n1 d-flex align-center"):
+                                with v3.VCardTitle(
+                                    classes="pt-0 mt-n1 d-flex align-center"
+                                ):
                                     html.Div("{{ card.value }}", classes="me-2")
                                     with v3.VChip(
                                         label=True,
@@ -51,7 +53,10 @@ class Cards(TrameApp):
                                     ):
                                         with html.Template(raw_attrs=["#prepend"]):
                                             v3.VIcon(size=10)
-                                            html.Span("{{ card.change }}", classes="text-caption")
+                                            html.Span(
+                                                "{{ card.change }}",
+                                                classes="text-caption",
+                                            )
 
                             v3.VSparkline(
                                 color=("card.color",),
@@ -67,12 +72,14 @@ class Cards(TrameApp):
                                 smooth=True,
                             )
 
+
 # -----------------------------------------------------------------------------
 # In case you want to run it from the CLI
 # -----------------------------------------------------------------------------
 def main():
     app = Cards()
     app.server.start()
+
 
 if __name__ == "__main__":
     main()
